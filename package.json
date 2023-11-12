@@ -1,0 +1,22 @@
+{
+  "name": "dnd-character-generator",
+  "version": "1.0.0",
+  "description": "Full Stack App to generate a DnD character",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Noahhaines171/DnD-Character-Generator.git"
+  },
+  "author": "Noah Haines",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Noahhaines171/DnD-Character-Generator/issues"
+  },
+  "homepage": "https://github.com/Noahhaines171/DnD-Character-Generator#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
