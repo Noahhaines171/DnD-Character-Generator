@@ -1,2 +1,3 @@
 # DnD-Character-Generator
- Small webapp to generate a DnD charceter
+
+ Small webapp to generate a DnD character
