@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 
-function SpellCard({ spell }) {
+export default function SpellCard({ spell }) {
   return (
     <li className="spell-card">
       <hgroup>
@@ -32,5 +33,3 @@ function SpellCard({ spell }) {
     </li>
   );
 }
-
-export default SpellCard;

@@ -1,24 +1,61 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
 import { getAllSpells } from "api/dnd";
-import SpellCard from "components/SpellCard";
+// import SpellCard from "components/SpellCard";
 
-export default function SpellCards() {
+function SpellCards() {
   const [spells, setSpells] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getAllSpells().then(setSpells);
+    setIsLoading(true);
+    loadSpells();
   }, []);
 
+  const loadSpells = async () => {
+    console.log("Load Spells");
+    // const savedSpells = localStorage.getItem("spells");
+    // if (savedSpells) {
+    //   setSpells(JSON.parse(savedSpells));
+    //   setIsLoading(false);
+    // }
+    await getAllSpells().then((spells) => {
+      setSpells(spells);
+      console.log("spells", spells);
+      // localStorage.setItem("spells", JSON.stringify(spells));
+      setIsLoading(false);
+    });
+  };
+
+  // return (
+  //   <div className="App">
+  //     {isLoading ? (
+  //       <span className="loading">Loading...</span>
+  //     ) : (
+  //       <ul className="spell-list">
+  //         {spells.map((spell) => (
+  //           <li key={spell.index}>{spell.name}</li>
+  //           // <SpellCard key={spell.index} spell={spell} />
+  //         ))}
+  //       </ul>
+  //     )}
+  //   </div>
+  // );
   return (
-    <>
-      <div className="spell-cards-wrapper">
-        {spells.length === 0 && <span className="loading">Loading...</span>}
+    <div className="App">
+      {isLoading && spells.length < 5 ? (
+        <span className="loading">Loading...</span>
+      ) : (
         <ul className="spell-list">
-          {spells.map((spell) => (
-            <SpellCard key={spell.index} spell={spell} />
+          {console.log(spells)}
+          {spells.forEach((spell) => (
+            <li key={spell.index}>{spell.name}</li>
+            // <SpellCard key={spell.index} spell={spell} />
           ))}
         </ul>
-      </div>
-    </>
+      )}
+    </div>
   );
 }
+
+export default SpellCards;
