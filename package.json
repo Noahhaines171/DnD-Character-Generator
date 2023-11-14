@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Noahhaines171/DnD-Character-Generator#readme",
   "devDependencies": {
+    "@types/node": "^20.9.0",
     "concurrently": "^8.2.2"
   }
 }
