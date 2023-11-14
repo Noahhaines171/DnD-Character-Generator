@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { getAllSpells } from "api/dnd";
+import { getSpellIndexes } from "api/dnd";
 // import SpellCard from "components/SpellCard";
 
 function SpellCards() {
@@ -8,21 +8,20 @@ function SpellCards() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     loadSpells();
   }, []);
 
   const loadSpells = async () => {
+    setIsLoading(true);
     console.log("Load Spells");
     // const savedSpells = localStorage.getItem("spells");
     // if (savedSpells) {
     //   setSpells(JSON.parse(savedSpells));
     //   setIsLoading(false);
     // }
-    await getAllSpells().then((spells) => {
+    await getSpellIndexes().then((spells) => {
       setSpells(spells);
-      console.log("spells", spells);
-      // localStorage.setItem("spells", JSON.stringify(spells));
+      localStorage.setItem("spells", JSON.stringify(spells));
       setIsLoading(false);
     });
   };
@@ -41,20 +40,38 @@ function SpellCards() {
   //     )}
   //   </div>
   // );
+  // return (
+  //   <>
+  //     {isLoading ? (
+  //       <span className="loading">Loading...</span>
+  //     ) : (
+  //       <ul className="spell-list">
+  //         {console.log(spells)}
+  //         {spells.forEach((spell) => (
+  //           <li key={spell.index}>{spell.name}</li>
+  //           // <SpellCard key={spell.index} spell={spell} />
+  //         ))}
+  //       </ul>
+  //     )}
+  //   </>
+  // );
   return (
-    <div className="App">
-      {isLoading && spells.length < 5 ? (
-        <span className="loading">Loading...</span>
-      ) : (
+    <>
+      {isLoading && (
+        <>
+          <span className="loading">Loading...</span>
+        </>
+      )}
+      <>
         <ul className="spell-list">
           {console.log(spells)}
-          {spells.forEach((spell) => (
+          {spells.map((spell) => (
             <li key={spell.index}>{spell.name}</li>
             // <SpellCard key={spell.index} spell={spell} />
           ))}
         </ul>
-      )}
-    </div>
+      </>
+    </>
   );
 }
 
