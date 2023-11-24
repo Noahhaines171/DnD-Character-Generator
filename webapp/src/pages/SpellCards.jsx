@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { getSpells } from "api/dnd";
 import SpellCard from "components/SpellCard";
+import { Spinner } from "components/Spinner";
 
 function SpellCards() {
   const [spells, setSpells] = useState([]);
@@ -28,21 +29,19 @@ function SpellCards() {
   };
 
   return (
-    <>
+    <div className="spell-cards-wrapper">
       {isLoading && (
-        <>
-          <span className="loading">Loading...</span>
-        </>
+        <div className="spinner-wrapper">
+          <Spinner />
+        </div>
       )}
-      <>
-        <ul className="spell-list">
-          {spells.map((spell) => (
-            // <li key={spell.index}>{spell.name}</li>
-            <SpellCard key={spell.index} spell={spell} />
-          ))}
-        </ul>
-      </>
-    </>
+      <div className="spell-list">
+        {spells.map((spell) => (
+          // <li key={spell.index}>{spell.name}</li>
+          <SpellCard key={spell.index} spell={spell} />
+        ))}
+      </div>
+    </div>
   );
 }
 
