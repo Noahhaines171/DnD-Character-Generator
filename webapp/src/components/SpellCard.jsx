@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from "react";
+import SpellModal from "./SpellModal";
 
 export default function SpellCard({ spell }) {
   const isCantrip = spell.level === 0;
@@ -94,6 +94,7 @@ export default function SpellCard({ spell }) {
         {/* <p className="card-text">{spell.desc}</p> */}
         {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
       </div>
+      <SpellModal spell={spell} />
     </div>
   );
   // return (

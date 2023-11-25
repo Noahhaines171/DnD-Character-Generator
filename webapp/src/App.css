@@ -55,6 +55,7 @@
 .spell-card {
   margin: 0.5rem;
   width: 20rem;
+  cursor: pointer;
 }
 
 .spell-card-bg {
